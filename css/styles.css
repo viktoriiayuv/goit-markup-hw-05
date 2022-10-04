@@ -12,6 +12,10 @@
 	--header-border-color: #ececec;
 	--card-border-color: #eee;
 	--primary-icon-color: #afb1b8;
+
+	--transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	--transition-time: 250ms;
+	--transition-time-modal: 1000ms;
 }
 
 /* Глобальні стилі */
@@ -66,7 +70,6 @@ p {
 
 /* ХЕДЕР*/
 .header {
-	padding: 24px 0;
 	border-bottom: 1px solid var(--header-border-color);
 }
 .header .container {
@@ -75,6 +78,7 @@ p {
 }
 /* Стилі логотипу */
 .logo {
+	padding: 24px 0;
 	font-family: "Raleway", sans-serif;
 	font-weight: 700;
 	font-size: 26px;
@@ -107,6 +111,7 @@ p {
 }
 .site-nav .link,
 .contact-nav .link {
+	padding: 32px 0;
 	font-weight: 500;
 	font-size: 14px;
 	line-height: 1.14;
@@ -125,12 +130,33 @@ p {
 	fill: currentColor;
 }
 /* Колір при наведенні та фокуксі та колір поточної сторінки */
+.site-nav .link,
+.contact-nav .link {
+	transition: color var(--transition-time) var(--transition-timing-function);
+}
+
 .site-nav .link:hover,
 .site-nav .link:focus,
 .contact-nav .link:hover,
-.contact-nav .link:focus,
-.link.current {
+.contact-nav .link:focus {
 	color: var(--accent-color);
+}
+
+.link.current {
+	position: relative;
+	color: var(--accent-color);
+}
+
+.current::after {
+	content: "";
+	display: block;
+	position: absolute;
+	bottom: 0;
+	width: 108%;
+	height: 4px;
+	background-color: var(--accent-color);
+	border-radius: 2px;
+	transform: translate(-4%, 0);
 }
 
 /* СЕКЦІЯ HERO */
@@ -174,6 +200,9 @@ p {
 	cursor: pointer;
 	border: none;
 	border-radius: 4px;
+	transition: color var(--transition-time) var(--transition-timing-function),
+		background-color var(--transition-time) var(--transition-timing-function),
+		box-shadow var(--transition-time) var(--transition-timing-function);
 }
 .hero-btn {
 	padding: 10px 32px;
@@ -182,6 +211,7 @@ p {
 	line-height: 1.88;
 	letter-spacing: 0.06em;
 }
+
 .hero-btn:hover,
 .hero-btn:focus {
 	background-color: var(--hero-btn-active);
@@ -268,6 +298,26 @@ p {
 	line-height: 1.71;
 }
 
+/* Секція Чим ми займаємось */
+.activities .text {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	padding: 27px 0;
+	text-align: center;
+	color: var(--primary-white);
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 1.14;
+	letter-spacing: 0.03em;
+	text-transform: uppercase;
+	background: rgb(47 48 58 / 0.8);
+}
+
+.activities .item {
+	position: relative;
+}
+
 /* Секція Наша команда */
 .team {
 	background-color: var(--light-background);
@@ -310,6 +360,8 @@ p {
 	height: 44px;
 	border-radius: 50%;
 	color: var(--primary-icon-color);
+	transition: color var(--transition-time) var(--transition-timing-function),
+		background-color var(--transition-time) var(--transition-timing-function);
 }
 .messengers-link:hover,
 .messengers-link:focus {
@@ -336,6 +388,8 @@ p {
 	border: 1px solid var(--primary-icon-color);
 	border-radius: 4px;
 	color: var(--primary-icon-color);
+	transition: color var(--transition-time) var(--transition-timing-function),
+		border-color var(--transition-time) var(--transition-timing-function);
 }
 .customer-link:hover,
 .customer-link:focus {
@@ -363,6 +417,7 @@ p {
 }
 .portfolio .item {
 	flex-basis: calc((100% - 60px) / 3);
+	transition: box-shadow var(--transition-time) var(--transition-timing-function);
 }
 .portfolio .item:hover {
 	box-shadow: 0px 3px 1px rgb(0 0 0 / 0.1), 0px 1px 2px rgb(0 0 0 / 0.08), 0px 2px 2px rgb(0 0 0 / 0.12);
@@ -391,6 +446,29 @@ p {
 	border-left: 1px solid var(--card-border-color);
 }
 
+.portfolio-details {
+	position: relative;
+	overflow: hidden;
+}
+
+.portfolio-details .details {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 63px 24px;
+	font-size: 18px;
+	line-height: 1.56;
+	letter-spacing: 0.03em;
+	color: var(--primary-white);
+	background-color: rgb(33 150 243 / 0.9);
+	transform: translateY(100%);
+	transition: transform var(--transition-time) var(--transition-timing-function);
+}
+
+.portfolio .link:hover .details {
+	transform: translateY(0%);
+}
+
 /* ФУТЕР */
 .footer {
 	background-color: var(--dark-background);
@@ -410,6 +488,7 @@ p {
 	letter-spacing: 0.03em;
 	font-style: normal;
 	color: var(--contact-footer);
+	transition: color var(--transition-time) var(--transition-timing-function);
 }
 .address .fact-address {
 	color: var(--primary-white);
@@ -437,8 +516,67 @@ p {
 .footer .messengers-link {
 	background-color: rgb(255 255 255 / 0.1);
 	color: var(--primary-white);
+	transition: background-color var(--transition-time) var(--transition-timing-function);
 }
 .footer .messengers-link:hover,
 .footer .messengers-link:focus {
 	background-color: var(--accent-color);
+}
+/* Модальне вікно */
+.backdrop {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background: rgb(0 0 0 / 0.2);
+}
+.modal {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(1);
+	width: 528px;
+	height: 581px;
+	background: var(--primary-white);
+	box-shadow: 0px 1px 3px rgb(0 0 0 / 0.12), 0px 1px 1px rgb(0 0 0 / 0.14), 0px 2px 1px rgb(0 0 0 / 0.2);
+	border-radius: 4px;
+	opacity: 1;
+	visibility: visible;
+	transition: transform var(--transition-time-modal) var(--transition-timing-function),
+		visibility var(--transition-time-modal) var(--transition-timing-function),
+		opacity var(--transition-time-modal) var(--transition-timing-function);
+}
+.is-hidden {
+	visibility: hidden;
+	opacity: 0;
+	pointer-events: none;
+	transition: transform var(--transition-time-modal) var(--transition-timing-function),
+		visibility var(--transition-time-modal) var(--transition-timing-function),
+		opacity var(--transition-time-modal) var(--transition-timing-function);
+}
+.is-hidden .modal {
+	opacity: 0;
+	transform: translate(-50%, -50%) scale(0);
+}
+.close-button {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background-color: var(--primary-white);
+	border: 1px solid rgb(0 0 0 / 0.1);
+	cursor: pointer;
+	transition: border var(--transition-time) var(--transition-timing-function),
+		background-color var(--transition-time) var(--transition-timing-function);
+}
+.close-button:hover,
+.close-button:focus {
+	border: 1px solid var(--accent-color);
+	background-color: rgb(0 0 0 / 0.1);
 }

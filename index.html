@@ -61,7 +61,7 @@
 					<div class="div-hero-title">
 						<h1 class="hero-title">Ефективні рішення для вашого бізнесу</h1>
 					</div>
-					<button type="button" class="hero-btn">Замовити послугу</button>
+					<button type="button" class="hero-btn" data-modal-open>Замовити послугу</button>
 				</div>
 			</section>
 			<!--Наші переваги-->
@@ -118,12 +118,15 @@
 					<ul class="activities list">
 						<li class="item">
 							<img src="./images/img1.jpg" alt="Написання програмного коду" width="370" height="294" class="img" />
+							<p class="text">Десктопні додатки</p>
 						</li>
 						<li class="item">
 							<img src="./images/img2.jpg" alt="Розробка мобільного додатку" width="370" height="294" class="img" />
+							<p class="text">Мобільні додатки</p>
 						</li>
 						<li class="item">
 							<img src="./images/img3.jpg" alt="Вибір кольору на планшеті" width="370" height="294" class="img" />
+							<p class="text">Дизайнерські рішення</p>
 						</li>
 					</ul>
 				</div>
@@ -148,7 +151,7 @@
 									</li>
 									<li class="messengers-item">
 										<a href="#" class="messengers-link">
-											<svg width="th" height="20" class="messengers-icon">
+											<svg width="20" height="20" class="messengers-icon">
 												<use href="./images/icons.svg#icon-twitter"></use>
 											</svg>
 										</a>
@@ -392,5 +395,13 @@
 				</div>
 			</div>
 		</footer>
+		<div class="backdrop is-hidden" data-modal>
+			<div class="modal">
+				<button type="button" class="close-button" data-modal-close>
+					<img src="./images/close.svg" alt="Закрити" width="11px" height="11px" />
+				</button>
+			</div>
+		</div>
+		<script src="./js/modal.js"></script>
 	</body>
 </html>
