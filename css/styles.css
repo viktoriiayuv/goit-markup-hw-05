@@ -78,7 +78,6 @@ p {
 }
 /* Стилі логотипу */
 .logo {
-	padding: 24px 0;
 	font-family: "Raleway", sans-serif;
 	font-weight: 700;
 	font-size: 26px;
@@ -90,6 +89,10 @@ p {
 .logo > .accent {
 	color: var(--accent-color);
 }
+.header .logo {
+	padding: 24px 0;
+}
+
 /* Стилі навігації в хедері */
 .site-nav,
 .site-nav .list,
@@ -302,9 +305,11 @@ p {
 .activities .text {
 	position: absolute;
 	bottom: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 100%;
-	padding: 27px 0;
-	text-align: center;
+	height: 70px;
 	color: var(--primary-white);
 	font-weight: 700;
 	font-size: 14px;
